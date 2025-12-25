@@ -1,35 +1,42 @@
 package Charity_Donation_Platform;
-public class Donation {
-    private int id;
-    private Donor donor;
-    private Charity charity;
+public class Donation
+    {
     private double amount;
-    public Donation() {
+    private String date;
+    public Donation(double amount, String date) {
+        this.amount = amount;
+        this.date = date;
     }
-    public Donation(int id, Donor donor, Charity charity, double amount) {
-        this.id = id;
-        this.donor = donor;
-        this.charity = charity;
+    public double getAmount()
+    {
+        return amount;
+    }
+    public void setAmount(double amount)
+    {
         this.amount = amount;
     }
-    public boolean isBiggerThan(Donation other) {
-        return this.amount > other.amount;
+    public String getDate()
+    {
+        return date;
     }
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public Donor getDonor() { return donor; }
-    public void setDonor(Donor donor) { this.donor = donor; }
-    public Charity getCharity() { return charity; }
-    public void setCharity(Charity charity) { this.charity = charity; }
-    public double getAmount() { return amount; }
-    public void setAmount(double amount) { this.amount = amount; }
-    public String toString() {
-        return "Donation{id=" + id +
-                ", donor=" + donor.getName() +
-                ", charity=" + charity.getTitle() +
-                ", amount=" + amount + "}";
+    public void setDate(String date)
+    {
+        this.date = date;
     }
-    public boolean isSameAs(Donation other) {
-        return this.id == other.id;
+    public String toString()
+    {
+        return "Donation{" + "amount=" + amount + ", date='" + date + "'}";
+    }
+    public boolean equals(Object obj)
+    {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        Donation d = (Donation)obj;
+        return amount == d.amount && date.equals(d.date);
+    }
+    public int hashCode()
+    {
+        return date.hashCode() + Double.valueOf(amount).hashCode();
     }
 }
+

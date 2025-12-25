@@ -1,25 +1,27 @@
 package Charity_Donation_Platform;
-public class Charity {
-    private int id;
-    private String title;
-    public Charity() {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+public class Charity
+    {
+    private String name;
+    private List<Donation> donations = new ArrayList<>();
+    public Charity(String name)
+    {
+        this.name = name;
     }
-    public Charity(int id, String title) {
-        this.id = id;
-        this.title = title;
+    public void addDonation(Donation donation) {
+        donations.add(donation);
     }
-    public String info() {
-        return "Charity: " + title;
+    public List<Donation> getDonationsByAmount(double minAmount)
+    {
+        return donations.stream()
+                .filter(d -> d.getAmount() >= minAmount)
+                .collect(Collectors.toList());
     }
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
-    public String toString() {
-        return "Charity{id=" + id + ", title='" + title + "'}";
-    }
-    public boolean isSameAs(Charity other) {
-        return this.id == other.id;
+    public String toString()
+    {
+        return "Charity{name='" + name + "', donations=" + donations + "}";
     }
 }
+

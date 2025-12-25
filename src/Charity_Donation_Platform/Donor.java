@@ -1,23 +1,55 @@
 package Charity_Donation_Platform;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Donor {
-    private int id;
+public class Donor
+{
     private String name;
-    public Donor(int id, String name) {
-        this.id = id;
+    private String email;
+    private List<Donation> donations = new ArrayList<>();
+    public Donor(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String name)
+    {
         this.name = name;
     }
-    public void greeting() {
-        System.out.println("I'm donor " + name);
+    public String getEmail()
+    {
+        return email;
     }
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String toString() {
-        return "Donor{id=" + id + ", name='" + name + "'}";
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
-    public boolean isSameAs(Donor other) {
-        return this.id == other.id;
+
+    public void addDonation(Donation donation)
+    {
+        donations.add(donation);
+    }
+    public List<Donation> getDonations()
+    {
+        return donations;
+    }
+    public String toString()
+    {
+        return "Donor{name='" + name + "', email='" + email + "', donations=" + donations + "}";
+    }
+    public boolean equals(Object obj)
+    {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        Donor d = (Donor)obj;
+        return email.equals(d.email);
+    }
+    public int hashCode()
+    {
+        return email.hashCode();
     }
 }
+
